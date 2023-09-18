@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Management System</title>
+
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h1>Creating a New Employee for the System</h1>
+    <hr>
+    <h2> Save Employee </h2>
+    <form th:action="@{/saveEmployee}" th:object="${newEmployee}" method="post">
+        <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+            <p>Please Correct Errors Below</p>
+        </div>
+
+        <input type="hidden" th:field="*{id}" />
+
+        <div class="row">
+            <div class="col-md-3 form-group" th:class="${#fields.hasErrors('firstName')}
+                                ? 'col-md-3 form-group has-error' : 'col-md-3 form-group'">
+                <input type="text" class="form-control" th:field="*{firstName}" th:errorclass="has-error"
+                placeholder="Employee First Name"/>
+                <span class="help-block" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('firstName')}" th:text="${err}"/>
+                                        </ul>
+                                    </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 form-group" th:class="${#fields.hasErrors('lastName')}
+                                ? 'col-md-3 form-group has-error' : 'col-md-3 form-group'">
+                <input type="text" class="form-control" th:field="*{lastName}" th:errorclass="has-error"
+                       placeholder="Employee Last Name"/>
+                <span class="help-block" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('lastName')}" th:text="${err}"/>
+                                        </ul>
+                                    </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 form-group" th:class="${#fields.hasErrors('email')}
+                                ? 'col-md-3 form-group has-error' : 'col-md-3 form-group'">
+                <input type="text" class="form-control" th:field="*{email}" th:errorclass="has-error"
+                       placeholder="Employee Email"/>
+                <span class="help-block" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('email')}" th:text="${err}"/>
+                                        </ul>
+                                    </span>
+            </div>
+        </div>
+
+        <button type="submit">Save</button>
+    </form>
+    <hr>
+    <a th:href="@{/}"> Back to Main Page</a>
+</div>
+
+</body>
+</html>
