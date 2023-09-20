@@ -5,4 +5,4 @@
 
 Welcome to the Management System repository!
 
-Web Service created with CRUD Operations, Generated mapperStruct (with Data Transfer Object), Services, Lombok, and etc.
+Web Service created with CRUD Operations, Spring MVC,  Generated mapperStruct (with Data Transfer Object), Services, Lombok, and etc.
